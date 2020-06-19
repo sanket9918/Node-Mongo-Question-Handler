@@ -40,27 +40,6 @@ exports.    findAll = (req, res) => {
     });
 };
 
-// Find one by ID
-exports.findOne = (req, res) => {
-  Question.findById(req.params.questionIds)
-   .then(question => {
-       if(!question) {
-           return res.status(404).send({
-               message: "Question not found with id " + req.params.questionIds
-           });
-       }
-       res.send(question);
-   }).catch(err => {
-       if(err.kind === 'ObjectId') {
-           return res.status(404).send({
-               message: "Question not found with id " + req.params.questionIds
-           });
-       }
-       return res.status(500).send({
-           message: "Error retrieving question with id " + req.params.questionIds
-       });
-   });
-};
 
 // Update a question identified by the questionId in the request
 exports.update = (req, res) => {
