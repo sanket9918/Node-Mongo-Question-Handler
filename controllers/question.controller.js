@@ -3,7 +3,7 @@ const Question = require('../models/question.model.js');
 // create and save
 exports.create = (req, res) => {
   // Validate request
-     if(!req.body.questionId) {
+     if(!req.body._id) {
          return res.status(400).send({
              message: "Question content can not be empty"
          });
@@ -11,8 +11,8 @@ exports.create = (req, res) => {
 
      // Create an Question
      const question = new Question({
-         questionId: req.body.questionId || "Untitled Question",
-         questions : req.body.questions,
+         _id: req.body._id || "Untitled Question",
+         ques : req.body.ques,
          options : req.body.options,
          ans: req.body.ans,
      });
@@ -29,7 +29,7 @@ exports.create = (req, res) => {
 };
 
 // Retrieve and return all
-exports.findAll = (req, res) => {
+exports.    findAll = (req, res) => {
   Question.find()
     .then(questions => {
         res.send(questions);
@@ -65,15 +65,15 @@ exports.findOne = (req, res) => {
 // Update a question identified by the questionId in the request
 exports.update = (req, res) => {
     // Validate Request
-    if(!req.body.questionId) {
+    if(!req.body._id) {
         return res.status(400).send({
             message: "Question content can not be empty"
         });
     }
     // Find question and update it with the request body
     Question.findByIdAndUpdate(req.params.questionIds, {
-      questionId: req.body.questionId || "Untitled Question",
-      questions: req.body.questions,
+      _id: req.body._id || "Untitled Question",
+      ques: req.body.ques,
       options: req.body.options,
       ans: req.body.ans
     }, {new: true})

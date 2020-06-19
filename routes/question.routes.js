@@ -7,8 +7,6 @@ module.exports = (app) => {
   // Read all
   app.get('/questions', questions.findAll);
 
-  // Find one by ID
-  app.get('/questions/:questionIds', questions.findOne);
 
   // Update
   app.put('/questions/:questionIds', questions.update);
